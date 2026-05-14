@@ -1,22 +1,76 @@
-import React from 'react';
+import React from "react";
+import { Card, CardContent, Typography, Grid, Container, Button } from "@mui/material";
+import { Link } from "react-router";
 
 const Dashboard: React.FC = () => {
-  return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>Dashboard</h1>
-      <p>Welcome to the dashboard! Here you can manage your data and view important information.</p>
-      <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
-        <div style={{ flex: 1, padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
-          <h2>Statistics</h2>
-          <p>View your statistics here.</p>
-        </div>
-        <div style={{ flex: 1, padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
-          <h2>Recent Activity</h2>
-          <p>Check your recent activities here.</p>
-        </div>
-      </div>
-    </div>
-  );
+    // Sample data for aduan
+    const aduanList = [
+        {
+            title: "Aduan 1",
+            description: "This is the description for Aduan 1.",
+            date: "2023-10-01",
+        },
+        {
+            title: "Aduan 2",
+            description: "This is the description for Aduan 2.",
+            date: "2023-10-02",
+        },
+        {
+            title: "Aduan 3",
+            description: "This is the description for Aduan 3.",
+            date: "2023-10-03",
+        },
+    ];
+
+    return (
+        <Container
+            style={{
+                padding: "20px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+            }}
+        >
+            <Typography variant="h4" component="h1" gutterBottom>
+                Dashboard
+            </Typography>
+            <Button
+                variant="contained"
+                color="primary"
+                style={{ marginBottom: "20px" }}
+                component={Link}
+                to="/aduan/borang-aduan"
+            >
+                Borang Aduan
+            </Button>
+            <Grid
+                container
+                spacing={3}
+                style={{
+                    flexDirection: "column",
+                    alignItems: "center",
+                }}
+            >
+                {aduanList.map((aduan, index) => (
+                    <Grid item xs={12} key={index} style={{ width: "100%", maxWidth: "500px" }}>
+                        <Card>
+                            <CardContent style={{ textAlign: "center" }}>
+                                <Typography variant="h6" component="h2" gutterBottom>
+                                    {aduan.title}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" gutterBottom>
+                                    {aduan.description}
+                                </Typography>
+                                <Typography variant="caption" color="textSecondary">
+                                    {aduan.date}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Container>
+    );
 };
 
 export default Dashboard;
